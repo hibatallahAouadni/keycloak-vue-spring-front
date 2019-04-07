@@ -1,9 +1,10 @@
 {
   "name": "front",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -12,7 +13,9 @@
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^8.0.0",
-    "vue-router": "^3.0.1"
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.1",
+    "vuetify": "^1.5.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
