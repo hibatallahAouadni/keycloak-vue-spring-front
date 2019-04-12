@@ -20,21 +20,32 @@ export default class ApiService extends Vue {
   public convertErrorToApiResponse(err: any): string {
     const res = new ApiResponse();
     try {
-      if (err.status === 0) {
-        return 'Server offline';
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        return err.response.data;
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+      } else if (err.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        return err.request;
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        return err.message;
       }
-      return err.body.msg;
-    } catch (e) {
+      } catch (e) {
       return res.msg === null ? 'Unknow error !' : res.msg;
     }
   }
 
   protected get(route: string, params: any = null): Promise<ApiResponse> {
     return new Promise((resolve, reject) => {
-      return this.$http.get(URL_SERVER + route, params)
+      return this.axios.get(URL_SERVER + route, params)
         .then((response: any) => {
-          resolve(this.convertBodyToApiResponse(response.body));
-        }, (err: any) => {
+          resolve(this.convertBodyToApiResponse(response.data));
+        }).catch((err: any) => {
           reject(this.convertErrorToApiResponse(err));
         });
     });
@@ -42,10 +53,10 @@ export default class ApiService extends Vue {
 
   protected post(route: string, params: any = null): Promise<ApiResponse> {
     return new Promise((resolve, reject) => {
-      return this.$http.post(URL_SERVER + route, params)
+      return this.axios.post(URL_SERVER + route, params)
         .then((response: any) => {
           resolve(this.convertBodyToApiResponse(response.body));
-        }, (err: any) => {
+        }).catch((err: any) => {
           reject(this.convertErrorToApiResponse(err));
         });
     });
@@ -53,10 +64,10 @@ export default class ApiService extends Vue {
 
   protected put(route: string, params: any = null): Promise<ApiResponse> {
     return new Promise((resolve, reject) => {
-      return this.$http.put(URL_SERVER + route, params)
+      return this.axios.put(URL_SERVER + route, params)
         .then((response: any) => {
           resolve(this.convertBodyToApiResponse(response.body));
-        }, (err: any) => {
+        }).catch((err: any) => {
           reject(this.convertErrorToApiResponse(err));
         });
     });
@@ -64,10 +75,10 @@ export default class ApiService extends Vue {
 
   protected delete(route: string, params: any = null): Promise<ApiResponse> {
     return new Promise((resolve, reject) => {
-      return this.$http.delete(URL_SERVER + route, params)
+      return this.axios.delete(URL_SERVER + route, params)
         .then((response: any) => {
           resolve(this.convertBodyToApiResponse(response.body));
-        }, (err: any) => {
+        }).catch((err: any) => {
           reject(this.convertErrorToApiResponse(err));
         });
     });
