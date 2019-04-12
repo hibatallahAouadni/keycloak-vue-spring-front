@@ -64,6 +64,13 @@ export default class App extends Vue {
     avatar: 'https://randomuser.me/api/portraits/men/84.jpg',
   };
 
+  private created() {
+    console.log(this.$keycloak)
+    // if (this.$keycloak.token !== null) {
+    //   console.log('token non null')
+    // }
+  }
+
   private onNavClick(path: any): void {
     this.$router.push(path);
   }
