@@ -8,8 +8,8 @@
     <div>
       <v-btn color="success" @click="loadTest">Test</v-btn>
       <v-btn color="error" @click="loadUnsafe">Unsafe</v-btn>
-      <v-btn color="warning">Warning</v-btn>
-      <v-btn color="info">Info</v-btn>
+      <v-btn color="warning" @click="loadAdmin">Admin</v-btn>
+      <v-btn color="info" @click="loadUser">User</v-btn>
     </div>
   </v-parallax>
 
@@ -33,6 +33,19 @@ export default class Home extends Vue {
 
   private loadUnsafe() {
    this.service.unsafe()
+    .then((value: string) => console.log(value))
+    .catch((err: any) => console.log(err));
+  }
+
+  private loadAdmin() {
+   this.service.admin()
+    .then((value: string) => console.log(value))
+    .catch((err: any) => console.log(err));
+  }
+
+
+  private loadUser() {
+   this.service.user()
     .then((value: string) => console.log(value))
     .catch((err: any) => console.log(err));
   }

@@ -6,15 +6,12 @@
       <v-toolbar flat class="transparent">
         <v-list v-if="authenticated" class="pa-0">
           <v-list-tile avatar>
-            <v-list-tile-avatar>
-              <img :src="user.avatar">
-            </v-list-tile-avatar>
-
             <v-list-tile-content>
-              <v-list-tile-title>{{user.name}}</v-list-tile-title>
+              <v-list-tile-title>{{user.username}} - [{{user.role}}]</v-list-tile-title>
+              <v-list-tile-title>{{user.email}}</v-list-tile-title>
             </v-list-tile-content>
 
-            <v-btn flat icon color="grey">
+            <v-btn flat icon color="grey" @click="logout">
               <v-icon>favorite</v-icon>
             </v-btn>
           </v-list-tile>
@@ -50,6 +47,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ROUTES from './routes';
+import UserEntity from './models/UserEntity';
 
 @Component
 export default class App extends Vue {
@@ -59,16 +57,29 @@ export default class App extends Vue {
   ];
 
   private authenticated = false;
-  private user: any = {
-    name: 'Joe Doe',
-    avatar: 'https://randomuser.me/api/portraits/men/84.jpg',
-  };
+  private user: UserEntity = new UserEntity();
 
-  private created() {
-    console.log(this.$keycloak)
-    // if (this.$keycloak.token !== null) {
-    //   console.log('token non null')
-    // }
+  private mounted() {
+    try {
+      if(Vue.prototype.$keycloak.token !== null) {
+        this.authenticated = true;
+        this.user.username = Vue.prototype.$keycloak.userName;
+        this.user.role = Vue.prototype.$keycloak.tokenParsed.realm_access.roles[0];
+        this.user.email = Vue.prototype.$keycloak.tokenParsed.email;
+      } else {
+        console.log('Not logged')
+      }
+    } catch (e) {
+      //
+    }
+  }
+
+  private logout() {
+    try {
+      Vue.prototype.$keycloak.logoutFn();
+    } catch (e) {
+      //
+    }
   }
 
   private onNavClick(path: any): void {
