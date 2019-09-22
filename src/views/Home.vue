@@ -1,19 +1,9 @@
 <template>
-  <div class="home">
-    <v-parallax dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-    <v-layout align-center column justify-center>
-      <h1 class="display-2 font-weight-thin mb-3">Heroes-Vue</h1>
-      <h4 class="subheading">Heroes website build in Vue.js</h4>
-    </v-layout>
-    <div>
-      <v-btn color="success" @click="loadTest">Test</v-btn>
-      <v-btn color="error" @click="loadUnsafe">Unsafe</v-btn>
-      <v-btn color="warning" @click="loadAdmin">Admin</v-btn>
-      <v-btn color="info" @click="loadUser">User</v-btn>
-    </div>
-  </v-parallax>
-
-
+  <div class="buttons" style="padding:36px;">
+    <a class="button is-primary is-rounded" @click="loadUnsafe">Call API - Not Logged</a>
+    <a class="button is-link is-rounded" @click="loadTest">Call API - Test</a>
+    <a class="button is-info is-rounded" @click="loadUser">Call API - USER</a>
+    <a class="button is-success is-rounded" @click="loadAdmin">Call API - ADMIN</a>
   </div>
 </template>
 
@@ -26,28 +16,28 @@ export default class Home extends Vue {
   private service: UserService = new UserService();
 
   private loadTest() {
-   this.service.test()
-    .then((value: string) => console.log(value))
-    .catch((err: any) => console.log(err));
+    this.service.test()
+      .then((value: string) => console.log(value))
+      .catch((err: any) => console.log(err));
   }
 
   private loadUnsafe() {
-   this.service.unsafe()
-    .then((value: string) => console.log(value))
-    .catch((err: any) => console.log(err));
+    this.service.unsafe()
+      .then((value: string) => console.log(value))
+      .catch((err: any) => console.log(err));
   }
 
   private loadAdmin() {
-   this.service.admin()
-    .then((value: string) => console.log(value))
-    .catch((err: any) => console.log(err));
+    this.service.admin()
+      .then((value: string) => console.log(value))
+      .catch((err: any) => console.log(err));
   }
 
 
   private loadUser() {
-   this.service.user()
-    .then((value: string) => console.log(value))
-    .catch((err: any) => console.log(err));
+    this.service.user()
+      .then((value: string) => console.log(value))
+      .catch((err: any) => console.log(err));
   }
 }
 </script>

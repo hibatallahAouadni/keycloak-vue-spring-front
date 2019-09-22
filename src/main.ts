@@ -3,32 +3,37 @@ import axios, { AxiosRequestConfig } from 'axios';
 import VueAxios from 'vue-axios';
 import App from './App.vue';
 import router from './router';
-import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
 import VueKeyCloak from '@dsb-norge/vue-keycloak-js';
+import 'bulma/css/bulma.css';
 
 Vue.use(VueAxios, axios);
-Vue.use(Vuetify);
 
 Vue.config.productionTip = false;
 
-axios.interceptors.request.use((config: AxiosRequestConfig) => {
-  config.headers.Authorization = `Bearer ${Vue.prototype.$keycloak.token}`;
-  return config;
-}, (err: any) => Promise.reject(err));
+function tokenInterceptor() {
+  axios.interceptors.request.use((config) => {
+    config.headers.Authorization = `Bearer ${Vue.prototype.$keycloak.token}`;
+    return config;
+  }, (error) => {
+    return Promise.reject(error);
+  });
+}
 
 Vue.use(VueKeyCloak, {
   config: {
-    authRealm: 'demo-auth',
-    authClientId: 'spring-web',
+    authRealm: 'test',
+    authClientId: 'test-web',
     authUrl: 'http://localhost:10001/auth',
-    logoutRedirectUri: 'http://localhost:8080',
+    logoutRedirectUri: 'http://localhost:8443',
+  },
+  init: {
+    onLoad: 'check-sso',
   },
   onReady: () => {
+    tokenInterceptor();
     new Vue({
       router,
       render: (h) => h(App),
     }).$mount('#app');
   },
 });
-
