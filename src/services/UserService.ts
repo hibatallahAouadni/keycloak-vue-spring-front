@@ -4,17 +4,17 @@ import ApiResponse from '@/models/ApiResponse';
 
 export default class UserService extends ApiService {
 
-  public unsafe(): Promise<string> {
+  public public(): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.get('/unsecured')
+      this.get('/public')
         .then((response: ApiResponse) => resolve(response.content))
         .catch(reject);
     });
   }
 
-  public test(): Promise<string> {
+  public private(): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.get('/test')
+      this.get('/private')
         .then((response: ApiResponse) => resolve(response.content))
         .catch(reject);
     });
