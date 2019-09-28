@@ -30,7 +30,10 @@ Vue.use(VueKeyCloak, {
     onLoad: 'check-sso',
   },
   onReady: () => {
-    tokenInterceptor();
+    if (Vue.prototype.$keycloak.authenticated) {
+      tokenInterceptor();
+    }
+
     new Vue({
       router,
       render: (h) => h(App),

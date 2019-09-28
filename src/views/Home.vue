@@ -24,47 +24,45 @@ export default class Home extends Vue {
 
   private ERROR_UNAUTHORIZED = 'You haven\'t access to this content';
 
-  private colorContent = 'is-primary';
+  private colorContent = '';
   private contentNotification = '';
   private showNotification = false;
 
   private loadPrivate() {
-    this.colorContent = 'is-link';
     this.service.private()
-      .then((value: string) => this.showNotif(value))
-      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED));
+      .then((value: string) => this.showNotif(value, 'is-success'))
+      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED, 'is-danger'));
   }
 
   private loadPublic() {
-    this.colorContent = 'is-primary';
     this.service.public()
-      .then((value: string) => this.showNotif(value))
-      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED));
+      .then((value: string) => this.showNotif(value, 'is-success'))
+      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED, 'is-danger'));
   }
 
   private loadAdmin() {
-    this.colorContent = 'is-success';
     this.service.admin()
-      .then((value: string) => this.showNotif(value))
-      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED));
+      .then((value: string) => this.showNotif(value, 'is-success'))
+      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED, 'is-danger'));
   }
 
 
   private loadUser() {
-    this.colorContent = 'is-info';
     this.service.user()
-      .then((value: string) => this.showNotif(value))
-      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED));
+      .then((value: string) => this.showNotif(value, 'is-success'))
+      .catch((err: any) => this.showNotif(this.ERROR_UNAUTHORIZED, 'is-danger'));
   }
 
-  private showNotif(msg: string) {
+  private showNotif(msg: string, colorContent: string) {
     this.showNotification = true;
     this.contentNotification = msg;
+    this.colorContent = colorContent;
   }
 
   private deleteNotif() {
     this.showNotification = false;
     this.contentNotification = '';
+    this.colorContent = '';
   }
 }
 </script>
