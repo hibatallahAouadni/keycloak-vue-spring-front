@@ -37,14 +37,21 @@ export default class App extends Vue {
 
   private mounted() {
     try {
-      if (Vue.prototype.$keycloak.token !== null) {
-        this.authenticated = true;
-        this.user.username = Vue.prototype.$keycloak.userName;
-        this.user.role = Vue.prototype.$keycloak.tokenParsed.realm_access.roles[0];
-        this.user.email = Vue.prototype.$keycloak.tokenParsed.email;
-      } else {
-        console.log('Not logged');
-      }
+    console.log('mounted');
+
+    // TODO:
+    // authenticated = true;
+
+
+    // TODO:
+      // if (Vue.prototype.$keycloak.token !== null) {
+      //   this.authenticated = true;
+      //   this.user.username = Vue.prototype.$keycloak.userName;
+      //   this.user.role = Vue.prototype.$keycloak.tokenParsed.realm_access.roles[0];
+      //   this.user.email = Vue.prototype.$keycloak.tokenParsed.email;
+      // } else {
+      //   console.log('Not logged');
+      // }
     } catch (e) {
       //
     }
@@ -52,15 +59,14 @@ export default class App extends Vue {
 
   private logout() {
     try {
-      Vue.prototype.$keycloak.logoutFn();
+    // TODO:
+    console.log('logout');
+      // Vue.prototype.$keycloak.logoutFn();
     } catch (e) {
       //
     }
   }
 
-  private onNavClick(path: any): void {
-    this.$router.push(path);
-  }
 }
 </script>
 
