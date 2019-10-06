@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  kvp_front:
+    image: repo.slickteam.fr:15001/kvp-front:local
+    build: ../
+    container_name: kvp-front-srv
+    restart: unless-stopped
+    ports:
+      - "8443:80"
+    networks:
+      - kvp_demo_keycloak
+
+networks:
+  kvp_demo_keycloak:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "193.100.10.0/24"
+
+

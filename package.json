@@ -7,6 +7,7 @@
     "dev": "vue-cli-service serve",
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-slickteam": "vue-cli-service build --mode slickteam",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

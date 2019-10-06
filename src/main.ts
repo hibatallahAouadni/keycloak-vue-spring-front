@@ -21,10 +21,10 @@ function tokenInterceptor() {
 
 Vue.use(VueKeyCloak, {
   config: {
-    authRealm: 'test',
-    authClientId: 'test-web',
-    authUrl: 'http://localhost:10001/auth',
-    logoutRedirectUri: 'http://localhost:8443',
+    authRealm: process.env.VUE_APP_KEYCLOAK_REALM,
+    authClientId: process.env.VUE_APP_KEYCLOAK_CLIENT_ID,
+    authUrl: process.env.VUE_APP_KEYCLOAK_AUTH_URL,
+    logoutRedirectUri: process.env.VUE_APP_KEYCLOAK_REDIRECT_URL,
   },
   init: {
     onLoad: 'check-sso',
