@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="buttons" style="padding:36px;">
+    <div class="buttons btn-demo">
       <a class="button is-primary is-rounded" @click="loadPublic">Get Public content</a>
       <a class="button is-link is-rounded" @click="loadPrivate">Get Private content</a>
       <a class="button is-info is-rounded" @click="loadUser">Get User content</a>
@@ -66,3 +66,12 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style scoped>
+
+.btn-demo{
+  padding:36px;
+  justify-content: center;
+}
+
+</style>

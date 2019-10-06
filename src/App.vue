@@ -4,7 +4,7 @@
       <Sidebar v-if="authenticated" :email="user.email" :displayName="user.username" :role="user.role" />
       <div class="column">
         <Topbar :authenticated="authenticated" />
-        <div class="container">
+        <div>
           <router-view/>
         </div>
       </div>

@@ -2,6 +2,7 @@
   "name": "front",
   "version": "1.0.0",
   "private": true,
+  "author": {"email": "ronan.morel@slickteam.fr", "name": "Ronan MOREL", "url": "https://slickteam.fr"},
   "scripts": {
     "dev": "vue-cli-service serve",
     "start": "vue-cli-service serve",

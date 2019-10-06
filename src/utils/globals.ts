@@ -1,1 +1,1 @@
-export const URL_SERVER = 'http://' + window.location.hostname + ':9000';
+export const URL_SERVER = process.env.VUE_APP_API_URL;
