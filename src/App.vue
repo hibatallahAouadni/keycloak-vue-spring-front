@@ -37,13 +37,7 @@ export default class App extends Vue {
 
   private mounted() {
     try {
-    console.log('mounted');
-
-    // TODO:
-    // authenticated = true;
-
-
-    // TODO:
+      // TODO:
       // if (Vue.prototype.$keycloak.token !== null) {
       //   this.authenticated = true;
       //   this.user.username = Vue.prototype.$keycloak.userName;
@@ -52,16 +46,6 @@ export default class App extends Vue {
       // } else {
       //   console.log('Not logged');
       // }
-    } catch (e) {
-      //
-    }
-  }
-
-  private logout() {
-    try {
-    // TODO:
-    console.log('logout');
-      // Vue.prototype.$keycloak.logoutFn();
     } catch (e) {
       //
     }
