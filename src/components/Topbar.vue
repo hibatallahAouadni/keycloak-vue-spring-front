@@ -27,15 +27,11 @@ export default class Topbar extends Vue {
   private authenticated!: boolean;
 
   private logIn() {
-    // TODO:
-    console.log('LogIn');
-    // Vue.prototype.$keycloak.loginFn();
+    Vue.prototype.$keycloak.loginFn();
   }
 
   private logOut() {
-    // TODO:
-    console.log('LogOut');
-    // Vue.prototype.$keycloak.logoutFn();
+    Vue.prototype.$keycloak.logoutFn();
   }
 }
 </script>

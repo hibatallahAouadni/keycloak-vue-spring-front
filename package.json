@@ -11,10 +11,10 @@
     "dev": "vue-cli-service serve",
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-slickteam": "vue-cli-service build --mode slickteam",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@dsb-norge/vue-keycloak-js": "^1.1.2",
     "axios": "^0.19.2",
     "bulma": "^0.8.1",
     "core-js": "^3.6.4",

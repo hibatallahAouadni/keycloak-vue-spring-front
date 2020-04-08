@@ -37,15 +37,14 @@ export default class App extends Vue {
 
   private mounted() {
     try {
-      // TODO:
-      // if (Vue.prototype.$keycloak.token !== null) {
-      //   this.authenticated = true;
-      //   this.user.username = Vue.prototype.$keycloak.userName;
-      //   this.user.role = Vue.prototype.$keycloak.tokenParsed.realm_access.roles[0];
-      //   this.user.email = Vue.prototype.$keycloak.tokenParsed.email;
-      // } else {
-      //   console.log('Not logged');
-      // }
+      if (Vue.prototype.$keycloak.token !== null) {
+        this.authenticated = true;
+        this.user.username = Vue.prototype.$keycloak.userName;
+        this.user.role = Vue.prototype.$keycloak.tokenParsed.realm_access.roles[0];
+        this.user.email = Vue.prototype.$keycloak.tokenParsed.email;
+      } else {
+        console.log('Not logged');
+      }
     } catch (e) {
       //
     }
